@@ -43,6 +43,7 @@ def best_look_up_table(look_up_tables, plaintext, arohana_swara, raga, swara_fre
 
     for i in range(a):
         audio_file = f"./midi_files/audio_{raga}_{i}.mid"
+        print(audio_file)
         score = scoring(audio_file)
         if score > max_score:
             max_score = score
