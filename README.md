@@ -13,7 +13,7 @@ This project demonstrates a music-based encryption and decryption system using s
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/music-encryption-decryption.git
+   https://github.com/sriharib128/Music_Encryption.git
    ```
 
 2. Install the required dependencies:
@@ -28,7 +28,9 @@ This project demonstrates a music-based encryption and decryption system using s
    - `arohan_swara.json`: Contains the arohan (ascending) sequence of swaras for different ragas.
    - `two_three_four_five_comb.json`: Contains the possible combinations of swaras for encryption.
 
-2. Update the `main.py` script with the desired plaintext, raga, and other parameters.
+2. Update the `main.py` script , raga, and other parameters.
+
+2. Select the appropriate raga name in line 16 of `main.py` (raga names are available in arohana_swara.json) along with the desired plaintext .
 
 3. Run the `main.py` script:
    ```
@@ -42,7 +44,7 @@ This project demonstrates a music-based encryption and decryption system using s
    - Generate an audio sequence based on the encrypted swaras.
    - Decrypt the audio sequence back into the original plaintext.
 
-5. The encrypted ciphertext, generated audio files (WAV and MIDI), and decrypted plaintext will be displayed in the console.
+5. The encrypted ciphertext, generated audio file `audio_{raga_name}.wav`, and decrypted plaintext will be displayed in the console.
 
 ## File Structure
 
@@ -59,19 +61,11 @@ This project demonstrates a music-based encryption and decryption system using s
 - Customize the `two_three_four_five_comb.json` file to change the possible combinations of swaras for encryption.
 - Adjust the parameters in the `main.py` script, such as the plaintext, raga, sampling rate, and duration, to suit your needs.
 
-## Contributing
+## How to run
 
-Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
 - The concept of using Indian classical music for encryption and decryption was inspired by various research papers and articles.
 - The project utilizes the NumPy, SciPy, and Mido libraries for audio processing and MIDI generation.
-
-## Contact
-
-For any questions or inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
