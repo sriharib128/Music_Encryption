@@ -13,23 +13,24 @@ with open("arohana_swara.json", "r") as f:
 with open("swara_freq.json", "r") as f:
     swara_freq = json.load(f)
 
-raga = "ganamurthi"
 amsa_swara = "Pa"
+
+plaintext = "I LOVE MUSIC"
+print(plaintext)
+
+look_up_tables = generate_look_up_tables()
+alphabet_swara,raga = best_look_up_table(look_up_tables, plaintext, arohana_swara, swara_freq)
+
+print("Best Look Up Table for this text:", alphabet_swara)
+print("Best Raga for this text:", raga)
+print("Using Pa as delimeter:", amsa_swara)
+# raga = "ganamurthi"
 
 text = arohana_swara[raga].split()
 temp = swara_freq.copy()
 for key in temp.keys():
     if key not in text:
         swara_freq.pop(key, None)
-
-plaintext = "I LOVE MUSIC"
-print(plaintext)
-
-look_up_tables = generate_look_up_tables()
-alphabet_swara = best_look_up_table(look_up_tables, plaintext, arohana_swara, raga, swara_freq)
-
-print("Best Look Up Table:", alphabet_swara)
-
 ciphertext = encrypt(plaintext, alphabet_swara,amsa_swara)
 print("Ciphertext:", ciphertext)
 print("="*100)

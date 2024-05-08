@@ -26,29 +26,38 @@ def generate_look_up_tables():
         look_up_tables.append(look_up_table)
     return look_up_tables
 
-def best_look_up_table(look_up_tables, plaintext, arohana_swara, raga, swara_freq):
+def best_look_up_table(look_up_tables, plaintext, arohana_swara, swara_freq):
     max_score = 0
     best_look_up_table = None
     a = 0
-    for look_up_table in look_up_tables:
-        alphabet_swara = look_up_table
-        ciphertext = encrypt(plaintext, alphabet_swara)
-        freq_list = generate_frequency_list(ciphertext, arohana_swara[raga], swara_freq)
-        audio_file = f"./midi_files/audio_sequence_{a}.wav"
-        sampling_rate = 4000
-        duration = 0.25
-        os.makedirs("./midi_files", exist_ok=True)
-        generate_audio_sequence(freq_list, duration=duration, sampling_rate=sampling_rate, output_file=audio_file, output_midi=f"./midi_files/audio_{raga}_{a}.mid")
-        a += 1
-
-    for i in range(a):
-        audio_file = f"./midi_files/audio_{raga}_{i}.mid"
-        print(audio_file)
-        score = scoring(audio_file)
-        if score > max_score:
-            max_score = score
-            best_look_up_table = look_up_tables[i]
-    return best_look_up_table
+    with open("arohana_swara.json", "r") as f:
+        arohana_swara = json.load(f)
+        ragas_list = list(arohana_swara.keys())
+    # select 10 ragas randomly form the ragas_list
+    ragas = random.sample(ragas_list, 10)
+    for raga in ragas:
+        a=0
+        for look_up_table in look_up_tables:
+            alphabet_swara = look_up_table
+            ciphertext = encrypt(plaintext, alphabet_swara)
+            freq_list = generate_frequency_list(ciphertext, arohana_swara[raga], swara_freq)
+            audio_file = f"./midi_files/audio_{raga}_{a}.wav"
+            sampling_rate = 4000
+            duration = 0.25
+            os.makedirs("./midi_files", exist_ok=True)
+            generate_audio_sequence(freq_list, duration=duration, sampling_rate=sampling_rate, output_file=audio_file, output_midi=f"./midi_files/audio_{raga}_{a}.mid")
+            a += 1
+    best_raga ="Mayamalavagowla"
+    for raga in ragas:
+        for i in range(a):
+            audio_file = f"./midi_files/audio_{raga}_{i}.mid"
+            print(audio_file)
+            score = scoring(audio_file)
+            if score > max_score:
+                max_score = score
+                best_look_up_table = look_up_tables[i]
+                best_raga = raga
+    return best_look_up_table,best_raga
 
 def encrypt(plaintext, alphabet_swara,amsa_swara='Pa'):
     ciphertext = ''
