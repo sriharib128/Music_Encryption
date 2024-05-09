@@ -39,8 +39,8 @@ print("Encryption is done into audio file with following frequencies 0.25s each"
 freq_list = generate_frequency_list(ciphertext, arohana_swara[raga], swara_freq)
 print(freq_list)
 audio_file = f"audio_{raga}.wav"
-sampling_rate = 4000
-duration = 0.25
+sampling_rate = 8000
+duration = 0.5
 generate_audio_sequence(freq_list, duration=duration, sampling_rate=sampling_rate, output_file=audio_file)
 
 window_size = int(duration * sampling_rate)

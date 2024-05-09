@@ -1,6 +1,6 @@
 # Music Encryption and Decryption
 
-This project demonstrates a music-based encryption and decryption system using swaras (musical notes) and ragas (melodic frameworks) from Indian classical music. The system encrypts plaintext into a sequence of swaras, generates an audio sequence based on the encrypted swaras, and then decrypts the audio sequence back into the original plaintext.
+This project demonstrates a music-based encryption and decryption system using swaras (musical notes) and ragas (melodic frameworks) from Indian classical music. The system generates multiple look-up tables using different ragas, encrypts the plaintext into a sequence of swaras, generates multiple encrypted audio sequences, and then selects the best raga and look-up table based on a scoring function. The decryption process then uses the selected raga and look-up table to decrypt the audio sequence back into the original plaintext.
 
 ## Prerequisites
 
@@ -28,9 +28,7 @@ This project demonstrates a music-based encryption and decryption system using s
    - `arohan_swara.json`: Contains the arohan (ascending) sequence of swaras for different ragas.
    - `two_three_four_five_comb.json`: Contains the possible combinations of swaras for encryption.
 
-2. Update the `main.py` script , raga, and other parameters.
-
-2. Select the appropriate raga name in line 16 of `main.py` (raga names are available in arohana_swara.json) along with the desired plaintext .
+2. Update the `main.py` script with the desired plaintext.
 
 3. Run the `main.py` script:
    ```
@@ -38,13 +36,13 @@ This project demonstrates a music-based encryption and decryption system using s
    ```
 
 4. The script will perform the following steps:
-   - Generate multiple look-up tables for encryption.
-   - Select the best look-up table based on the scoring function.
-   - Encrypt the plaintext using the selected look-up table.
-   - Generate an audio sequence based on the encrypted swaras.
-   - Decrypt the audio sequence back into the original plaintext.
+   - Generate multiple look-up tables using different ragas.
+   - Encrypt the plaintext into multiple encrypted audio sequences.
+   - Score the encrypted audio sequences based on a pleasantness metric.
+   - Select the best raga and look-up table based on the scoring function.
+   - Decrypt the selected encrypted audio sequence back into the original plaintext.
 
-5. The encrypted ciphertext, generated audio file `audio_{raga_name}.wav`, and decrypted plaintext will be displayed in the console.
+5. The selected raga name, look-up table, encrypted ciphertext, and decrypted plaintext will be displayed in the console.
 
 ## File Structure
 
@@ -59,11 +57,7 @@ This project demonstrates a music-based encryption and decryption system using s
 - Modify the `swara_freq.json` file to change the mapping of swaras to frequencies.
 - Update the `arohan_swara.json` file to include different ragas and their corresponding arohan sequences.
 - Customize the `two_three_four_five_comb.json` file to change the possible combinations of swaras for encryption.
-- Adjust the parameters in the `main.py` script, such as the plaintext, raga, sampling rate, and duration, to suit your needs.
-
-## How to run
-
-
+- Adjust the parameters in the `main.py` script, such as the plaintext, sampling rate, and duration, to suit your needs.
 
 ## Acknowledgements
 
